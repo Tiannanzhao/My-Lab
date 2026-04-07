@@ -6,6 +6,17 @@ const MIN_CANVAS_WIDTH = 4320
 const MIN_CANVAS_HEIGHT = 2640
 const CANVAS_RATIO = MIN_CANVAS_WIDTH / MIN_CANVAS_HEIGHT
 const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+const COMMAND_PANEL_DESIGN = { width: 620, height: 296 }
+const COMMAND_PANEL_REPLACEMENT_ID = 'yt-transition'
+const COMMAND_PANEL_LINK =
+  'https://chromewebstore.google.com/detail/arrowprompt-ai-coding-sho/dkbcpkedebdmddoaebgejhaieelflfef'
+const COMMAND_PANEL_LABEL = 'ArrowPrompt - AI Coding Shortcuts extension'
+const COMMAND_DOT_PATTERNS = {
+  up: [1, 3, 4, 5, 7, 10, 13],
+  down: [1, 4, 7, 9, 10, 11, 13],
+  left: [2, 6, 10, 11, 12, 13, 14],
+  right: [2, 8, 10, 11, 12, 13, 14],
+}
 
 function calculateCanvasDimensions(viewportWidth, viewportHeight) {
   const isMobile = viewportWidth <= 600
@@ -148,6 +159,14 @@ function HoverScrambleText({ text, as: Tag = 'span', className, ...props }) {
   )
 }
 
+function ShinyHoverText({ text, className }) {
+  return (
+    <span className={className}>
+      <span className="shiny-hover-text">{text}</span>
+    </span>
+  )
+}
+
 function highlightQuote(text, highlight, colorClass) {
   if (!highlight || !text.includes(highlight)) return text
 
@@ -161,29 +180,6 @@ function highlightQuote(text, highlight, colorClass) {
       </span>
       {parts[1]}
     </>
-  )
-}
-
-function MainMenu({ onResetView }) {
-  return (
-    <nav className="main-menu">
-      <div className="menu-center">
-        <button className="menu-link menu-link--button is-active" onClick={onResetView}>
-          <HoverScrambleText text="Design" />
-        </button>
-        <a
-          className="menu-link"
-          href="https://www.intercom.com/careers?redirect_from=/careers-product-design"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <HoverScrambleText text="Careers" />
-        </a>
-        <a className="menu-link" href="https://www.intercom.com" target="_blank" rel="noreferrer">
-          <HoverScrambleText text="Product" />
-        </a>
-      </div>
-    </nav>
   )
 }
 
@@ -281,27 +277,84 @@ function VideoModal({ video, onClose }) {
 
 function LogoByline() {
   return (
-    <div className="logo-byline">
-      <span className="byline-group">
-        <span>Made by</span>
-        <span>:</span>
-        <span>3 designers</span>
-      </span>
-      <span className="byline-separator" />
-      <span className="byline-group">
-        <span>2 AI tools</span>
-      </span>
-      <span className="byline-separator" />
-      <span className="byline-group">
-        <span>In 1 day</span>
-        <span className="tooltip-anchor">
-          ?
-          <span className="tooltip-bubble">
-            This site was created during a group hackathon with nothing but AI, teamwork and pride.
-          </span>
-        </span>
-      </span>
+    <p className="logo-byline">
+      This is where I experiment. I design products. I also build them. With AI, fast, and from
+      scratch.
+    </p>
+  )
+}
+
+function DirectionDots({ direction }) {
+  const total = direction === 'up' || direction === 'down' ? 15 : 25
+
+  return (
+    <div className={`lab-dots ${direction === 'up' || direction === 'down' ? 'lab-dots--v' : 'lab-dots--h'}`}>
+      {Array.from({ length: total }, (_, index) => (
+        <span
+          key={`${direction}-${index}`}
+          className={`lab-dot ${COMMAND_DOT_PATTERNS[direction].includes(index) ? 'is-active' : ''}`}
+        />
+      ))}
     </div>
+  )
+}
+
+function CommandPanel({ panel, onHoverType }) {
+  return (
+    <a
+      className="card-shell card-shell--command-panel"
+      href={COMMAND_PANEL_LINK}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={COMMAND_PANEL_LABEL}
+      style={{
+        top: panel.position.top,
+        left: panel.position.left,
+        width: panel.frame.width,
+        height: panel.frame.height,
+        '--enter-delay': '960ms',
+      }}
+      onPointerEnter={() => {
+        onHoverType('widget')
+      }}
+      onPointerLeave={() => {
+        onHoverType(null)
+      }}
+      data-interactive="true"
+    >
+      <div className="card-title card-title--command">{COMMAND_PANEL_LABEL}</div>
+      <div className="lab-command-scale" style={{ transform: `scale(${panel.scale})` }}>
+        <div className="lab-command-panel">
+          <div className="lab-command-key lab-command-key--top">
+            <div className="lab-command-arrow-wrap">
+              <DirectionDots direction="up" />
+            </div>
+            <span className="lab-command-text">Explain code</span>
+          </div>
+
+          <div className="lab-command-key lab-command-key--left">
+            <div className="lab-command-inline">
+              <DirectionDots direction="left" />
+              <span className="lab-command-text">Fix bug</span>
+            </div>
+          </div>
+
+          <div className="lab-command-key lab-command-key--bottom">
+            <span className="lab-command-text">Optimize</span>
+            <div className="lab-command-arrow-wrap">
+              <DirectionDots direction="down" />
+            </div>
+          </div>
+
+          <div className="lab-command-key lab-command-key--right">
+            <div className="lab-command-inline">
+              <span className="lab-command-text">Translate</span>
+              <DirectionDots direction="right" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
   )
 }
 
@@ -331,7 +384,7 @@ function CanvasCard({ card, frame, index, onFolderOpen, onVideoOpen, onHoverType
         <div className="logo-card">
           {lines.map((line) => (
             <p key={line} className="logo-line">
-              <HoverScrambleText text={line} />
+              <ShinyHoverText text={line} />
             </p>
           ))}
           <LogoByline />
@@ -527,16 +580,50 @@ export default function App() {
     [viewport.height, viewport.width]
   )
 
+  const visibleCards = useMemo(
+    () => cards.filter((card) => card.id !== COMMAND_PANEL_REPLACEMENT_ID),
+    []
+  )
+
+  const replacedCard = useMemo(
+    () => cards.find((card) => card.id === COMMAND_PANEL_REPLACEMENT_ID),
+    []
+  )
+
   const layoutCards = useMemo(
     () =>
-      cards.map((card) => {
+      visibleCards.map((card) => {
         const frame = getCardFrame(card, viewport.width)
         const position = getCardCoordinates(card, frame, canvasSize)
 
         return { ...card, frame, position }
       }),
-    [canvasSize, viewport.width]
+    [canvasSize, viewport.width, visibleCards]
   )
+
+  const commandPanel = useMemo(() => {
+    const anchorFrame = getCardFrame(replacedCard, viewport.width)
+    const anchorPosition = getCardCoordinates(replacedCard, anchorFrame, canvasSize)
+    const scale = Math.min(1, anchorFrame.width / COMMAND_PANEL_DESIGN.width)
+    const frame = {
+      width: COMMAND_PANEL_DESIGN.width * scale,
+      height: COMMAND_PANEL_DESIGN.height * scale,
+    }
+    const position = {
+      left: anchorPosition.left,
+      top: anchorPosition.top + (anchorFrame.height - frame.height) / 2,
+    }
+
+    return {
+      id: 'command-panel',
+      type: 'widget',
+      frame,
+      position,
+      scale,
+    }
+  }, [canvasSize, replacedCard, viewport.width])
+
+  const minimapCards = useMemo(() => [...layoutCards, commandPanel], [commandPanel, layoutCards])
 
   useEffect(() => {
     document.title = 'Intercom Design'
@@ -616,19 +703,10 @@ export default function App() {
     document.body.classList.add('is-dragging-canvas')
   }
 
-  const resetView = () => {
-    const centered = {
-      x: (viewport.width - canvasSize.width) / 2,
-      y: (viewport.height - canvasSize.height) / 2,
-    }
-    setOffset(clampOffset(centered.x, centered.y, canvasSize, viewport))
-  }
-
   return (
     <div className="app-shell">
-      <MainMenu onResetView={resetView} />
       <Minimap
-        layoutCards={layoutCards}
+        layoutCards={minimapCards}
         hoveredType={hoveredType}
         canvasSize={canvasSize}
         viewport={viewport}
@@ -664,6 +742,7 @@ export default function App() {
               onHoverType={setHoveredType}
             />
           ))}
+          <CommandPanel panel={commandPanel} onHoverType={setHoveredType} />
         </div>
       </div>
 

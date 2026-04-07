@@ -197,8 +197,8 @@ export const cards = [
     top: '45%',
     left: '50%',
     centered: true,
-    text: 'Welcome to my open lab',
-    lines: ['Welcome to', 'my open lab'],
+    text: 'Welcome to my lab',
+    lines: ['Welcome to my lab'],
   },
   {
     id: 'text-flawless',
