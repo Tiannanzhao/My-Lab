@@ -197,7 +197,8 @@ export const cards = [
     top: '45%',
     left: '50%',
     centered: true,
-    text: 'INTERCOM DESIGN',
+    text: 'Welcome to my open lab',
+    lines: ['Welcome to', 'my open lab'],
   },
   {
     id: 'text-flawless',

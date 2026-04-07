@@ -318,8 +318,7 @@ function CanvasCard({ card, frame, index, onFolderOpen, onVideoOpen, onHoverType
   }
 
   if (card.type === 'logo') {
-    const [firstLine, ...rest] = card.text.split(' ')
-    const secondLine = rest.join(' ')
+    const lines = card.lines ?? [card.text]
 
     return (
       <div
@@ -330,12 +329,11 @@ function CanvasCard({ card, frame, index, onFolderOpen, onVideoOpen, onHoverType
         data-interactive="true"
       >
         <div className="logo-card">
-          <p className="logo-line">
-            <HoverScrambleText text={firstLine} />
-          </p>
-          <p className="logo-line">
-            <HoverScrambleText text={secondLine} />
-          </p>
+          {lines.map((line) => (
+            <p key={line} className="logo-line">
+              <HoverScrambleText text={line} />
+            </p>
+          ))}
           <LogoByline />
         </div>
       </div>
