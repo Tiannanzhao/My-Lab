@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import './app.css'
 import { articlesData, cards, intercomAsset } from './siteData'
+import VibeAsciiCard from './components/VibeAsciiCard'
 
 const MIN_CANVAS_WIDTH = 4320
 const MIN_CANVAS_HEIGHT = 2640
@@ -63,6 +64,10 @@ function getCardFrame(card, viewportWidth) {
         return isMobile ? { width: 280, height: 320 } : { width: 380, height: 420 }
       }
       return isMobile ? { width: 320, height: 213 } : { width: 600, height: 400 }
+    case 'ascii':
+      if (isSmallMobile) return { width: 300, height: 225 }
+      if (isMobile) return { width: 360, height: 270 }
+      return { width: 430, height: 323 }
     case 'youtube':
       if (isSmallMobile) return { width: 300, height: 169 }
       if (isMobile) return { width: 360, height: 202 }
@@ -423,6 +428,23 @@ function CanvasCard({ card, frame, index, onFolderOpen, onVideoOpen, onHoverType
         <div className="card-title">{card.label}</div>
         <div className="card-frame card-frame--image" style={{ height: frame.height }}>
           <img className="media-image" src={card.src} alt="" draggable="false" />
+        </div>
+      </div>
+    )
+  }
+
+  if (card.type === 'ascii') {
+    return (
+      <div
+        className="card-shell"
+        style={wrapperStyle}
+        onMouseEnter={() => onHoverType(card.type)}
+        onMouseLeave={() => onHoverType(null)}
+        data-interactive="true"
+      >
+        <div className="card-title">{card.label}</div>
+        <div className="card-frame card-frame--ascii" style={{ height: frame.height }}>
+          <VibeAsciiCard />
         </div>
       </div>
     )

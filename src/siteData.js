@@ -144,6 +144,14 @@ export const cards = [
     originalSize: true,
   },
   {
+    id: 'vibe-ascii',
+    type: 'ascii',
+    top: '24%',
+    left: '50%',
+    centered: true,
+    label: 'Vibe4Trading ASCII Hero',
+  },
+  {
     id: 'img-5',
     type: 'image',
     top: '78%',
