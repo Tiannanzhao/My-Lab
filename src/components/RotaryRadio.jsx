@@ -174,8 +174,12 @@ export default function RotaryRadio() {
           onClick={togglePower}
           aria-label="Power"
         >
-          <span className="rr-toggle__track">
-            <span className="rr-toggle__thumb" />
+          <span className="rr-toggle__base">
+            <span className="rr-toggle__bowl">
+              <span className="rr-toggle__lever">
+                <span className="rr-toggle__knob" />
+              </span>
+            </span>
           </span>
         </button>
         <div className="rr-lcd">
