@@ -411,12 +411,15 @@ button.card-frame--video {
   width: 100%;
 }
 
-/* ── Digital Rotary Radio ─────────────────────── */
+/* ── Digital Rotary Radio (Braun-inspired, white) ── */
 .card-frame--radio {
-  background: #0a0a0a;
-  border-radius: 16px;
+  background: #e8e4df;
+  border-radius: 20px;
   overflow: hidden;
   position: relative;
+  box-shadow:
+    0 2px 20px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .rotary-radio {
@@ -424,231 +427,184 @@ button.card-frame--video {
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 16px 14px;
-  background: linear-gradient(170deg, #111 0%, #0a0a0a 50%, #080808 100%);
+  background: linear-gradient(175deg, #f0ece7 0%, #e8e4df 40%, #e2deda 100%);
   user-select: none;
+  padding: 14px 14px 12px;
+  gap: 0;
 }
 
-/* LCD Display */
-.rr-display {
-  width: 100%;
-  border-radius: 10px;
-  background: #050505;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 2px;
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
-}
-
-.rr-display__inner {
-  border-radius: 8px;
-  padding: 12px 14px 10px;
-  background: #080808;
-  transition: background 0.6s ease, box-shadow 0.6s ease;
+/* ── Top header: power dot + LCD ── */
+.rr-header {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-height: 90px;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
 }
 
-.rr-display__inner.is-on {
-  background: #0b1210;
-  box-shadow: inset 0 0 30px rgba(0, 255, 120, 0.04);
-}
-
-.rr-freq-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  color: rgba(255, 255, 255, 0.2);
-  text-transform: uppercase;
-  transition: color 0.4s;
-}
-
-.rr-display__inner.is-on .rr-freq-label {
-  color: rgba(0, 255, 120, 0.5);
-}
-
-.rr-station-name {
-  font-family: 'DM Mono', monospace;
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  color: rgba(255, 255, 255, 0.15);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: color 0.4s;
-}
-
-.rr-display__inner.is-on .rr-station-name {
-  color: rgba(0, 255, 120, 0.85);
-  text-shadow: 0 0 8px rgba(0, 255, 120, 0.3);
-}
-
-.rr-station-name.is-scrubbing {
-  color: rgba(255, 200, 40, 0.7) !important;
-}
-
-/* Equalizer */
-.rr-eq {
-  display: flex;
-  align-items: flex-end;
-  gap: 2px;
-  height: 28px;
-  margin-top: 4px;
-}
-
-.rr-eq__bar {
-  flex: 1;
-  min-height: 2px;
-  background: rgba(0, 255, 120, 0.5);
-  border-radius: 1px 1px 0 0;
-  transition: height 0.08s ease;
-}
-
-.rr-display__inner:not(.is-on) .rr-eq__bar {
-  background: rgba(255, 255, 255, 0.06);
-}
-
-/* Dial area */
-.rr-dial-area {
-  position: relative;
-  width: 130px;
-  height: 130px;
+.rr-power {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: #dad6d1;
+  box-shadow:
+    inset 0 1px 3px rgba(0, 0, 0, 0.15),
+    0 1px 0 rgba(255, 255, 255, 0.6);
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+  flex-shrink: 0;
+  transition: box-shadow 0.3s;
+}
+
+.rr-power__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #333;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.rr-power.is-on .rr-power__dot {
+  background: #1a1a1a;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+}
+
+.rr-lcd {
+  flex: 1;
+  min-width: 0;
+}
+
+.rr-lcd__text {
+  font-family: 'DM Mono', monospace;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.rr-lcd__text.is-scrubbing {
+  color: #666;
+}
+
+.rr-lcd__clock {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: #888;
+  margin-top: 2px;
+}
+
+/* ── Speaker grille ── */
+.rr-grille {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(18, 1fr);
+  gap: 3px;
+  padding: 10px 6px;
+  align-content: center;
+  background: #f2eeea;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  min-height: 0;
+}
+
+.rr-grille__dot {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #1a1a1a;
+}
+
+/* ── Divider dots ── */
+.rr-divider {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 40px;
+}
+
+.rr-divider__dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #aaa;
+}
+
+/* ── Bottom bar: brand + dial + volume ── */
+.rr-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+  min-height: 80px;
+}
+
+.rr-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.rr-brand__name {
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #1a1a1a;
+  text-transform: uppercase;
+}
+
+.rr-brand__sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: #e04040;
+}
+
+.rr-dial-wrap {
   flex-shrink: 0;
 }
 
-.rr-dial-ring {
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.rr-notch {
-  position: absolute;
-  width: 2px;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 1px;
-  left: 50%;
-  top: 50%;
-  margin-left: -1px;
-  transform-origin: center center;
-}
-
 .rr-dial {
-  width: 80px;
-  height: 80px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
-  background: radial-gradient(circle at 40% 35%, #2a2a2a, #111);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: radial-gradient(circle at 45% 40%, #f5f2ef, #ddd8d3);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
   cursor: grab;
-  position: relative;
-  transition: transform 0.12s ease-out;
   touch-action: none;
+  transition: transform 0.12s ease-out;
 }
 
 .rr-dial:active {
   cursor: grabbing;
 }
 
-.rr-dial__indicator {
-  position: absolute;
-  width: 4px;
-  height: 14px;
-  background: rgba(0, 255, 120, 0.7);
-  border-radius: 2px;
-  top: 6px;
-  left: 50%;
-  margin-left: -2px;
-  box-shadow: 0 0 6px rgba(0, 255, 120, 0.4);
-}
-
-.rr-dial__grip {
-  position: absolute;
-  width: 24px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.08);
-  left: 50%;
-  margin-left: -12px;
-}
-
-.rr-dial__grip--1 { top: 30px; }
-.rr-dial__grip--2 { top: 40px; }
-.rr-dial__grip--3 { top: 50px; }
-
-/* Bottom controls */
-.rr-controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0 4px;
-}
-
-.rr-power {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: #151515;
-  color: rgba(255, 255, 255, 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s;
-  padding: 0;
-}
-
-.rr-power:hover {
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.rr-power.is-on {
-  color: rgba(0, 255, 120, 0.9);
-  border-color: rgba(0, 255, 120, 0.3);
-  box-shadow: 0 0 10px rgba(0, 255, 120, 0.15);
-}
-
-.rr-volume {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.rr-volume__label {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  color: rgba(255, 255, 255, 0.2);
-}
-
-.rr-volume__dots {
+.rr-volume-dots {
   display: flex;
   gap: 3px;
   align-items: center;
 }
 
-.rr-volume__dot {
-  width: 4px;
-  height: 4px;
+.rr-vol-dot {
+  width: 3px;
+  height: 3px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  background: #bbb;
+  transition: background 0.3s;
 }
 
-.rr-volume__dot.is-active {
-  background: rgba(0, 255, 120, 0.5);
+.rr-vol-dot.is-active {
+  background: #333;
 }
 
 .card-frame--video:hover .video-hover-overlay {
