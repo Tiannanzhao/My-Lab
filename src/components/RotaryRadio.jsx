@@ -10,7 +10,7 @@ const STATIONS = [
 
 const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 const GRILLE_COLS = 18
-const GRILLE_ROWS = 20
+const GRILLE_ROWS = 28
 
 function useCurrentTime() {
   const [time, setTime] = useState(() => new Date())
