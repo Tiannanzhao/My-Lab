@@ -516,8 +516,8 @@ button.card-frame--video {
 }
 
 .rr-grille__dot {
-  width: 100%;
-  aspect-ratio: 1;
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
   background: #1a1a1a;
 }
