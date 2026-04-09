@@ -18,7 +18,7 @@ export default function VibeAsciiCard() {
       '<div data-ascii-dither-bg aria-hidden="true" style="position:absolute;inset:0;height:100%;z-index:0;pointer-events:none;overflow:hidden"></div>'
 
     const script = document.createElement('script')
-    script.src = '/ascii-dither-background.js?v=push-2'
+    script.src = `${import.meta.env.BASE_URL}ascii-dither-background.js?v=push-3`
     script.async = true
     host.appendChild(script)
 
