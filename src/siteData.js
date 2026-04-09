@@ -312,4 +312,11 @@ export const cards = [
     src: intercomAsset('videos/2.mp4'),
     label: 'Intercom Brand Showreel',
   },
+  {
+    id: 'rotary-radio',
+    type: 'radio',
+    top: '72%',
+    left: '51%',
+    label: 'Digital Rotary Radio',
+  },
 ]

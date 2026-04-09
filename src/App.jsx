@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import './app.css'
 import { articlesData, cards, intercomAsset } from './siteData'
 import VibeAsciiCard from './components/VibeAsciiCard'
+import RotaryRadio from './components/RotaryRadio'
 
 const MIN_CANVAS_WIDTH = 4320
 const MIN_CANVAS_HEIGHT = 2640
@@ -68,6 +69,10 @@ function getCardFrame(card, viewportWidth) {
       if (isSmallMobile) return { width: 300, height: 225 }
       if (isMobile) return { width: 360, height: 270 }
       return { width: 430, height: 323 }
+    case 'radio':
+      if (isSmallMobile) return { width: 260, height: 340 }
+      if (isMobile) return { width: 300, height: 380 }
+      return { width: 340, height: 420 }
     case 'youtube':
       if (isSmallMobile) return { width: 300, height: 169 }
       if (isMobile) return { width: 360, height: 202 }
@@ -445,6 +450,23 @@ function CanvasCard({ card, frame, index, onFolderOpen, onVideoOpen, onHoverType
         <div className="card-title">{card.label}</div>
         <div className="card-frame card-frame--ascii" style={{ height: frame.height }}>
           <VibeAsciiCard />
+        </div>
+      </div>
+    )
+  }
+
+  if (card.type === 'radio') {
+    return (
+      <div
+        className="card-shell"
+        style={wrapperStyle}
+        onMouseEnter={() => onHoverType(card.type)}
+        onMouseLeave={() => onHoverType(null)}
+        data-interactive="true"
+      >
+        <div className="card-title">{card.label}</div>
+        <div className="card-frame card-frame--radio" style={{ height: frame.height }}>
+          <RotaryRadio />
         </div>
       </div>
     )
