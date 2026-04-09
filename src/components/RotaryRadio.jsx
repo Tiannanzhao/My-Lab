@@ -210,7 +210,16 @@ export default function RotaryRadio() {
             className="rr-dial"
             style={{ transform: `rotate(${rotation}deg)` }}
             onPointerDown={handleDialPointerDown}
-          />
+          >
+            <span className="rr-dial__indicator" />
+            {Array.from({ length: 6 }, (_, i) => (
+              <span
+                key={i}
+                className="rr-dial__grip"
+                style={{ transform: `rotate(${i * 30}deg)` }}
+              />
+            ))}
+          </div>
         </div>
         <div className="rr-volume-dots">
           {Array.from({ length: 12 }, (_, i) => (

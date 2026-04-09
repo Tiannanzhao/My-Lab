@@ -582,11 +582,48 @@ button.card-frame--video {
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
   cursor: grab;
   touch-action: none;
-  transition: transform 0.12s ease-out;
+  transition: transform 0.12s ease-out, scale 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.rr-dial:hover {
+  scale: 1.08;
 }
 
 .rr-dial:active {
   cursor: grabbing;
+  scale: 1.04;
+}
+
+/* Indicator dot at top edge */
+.rr-dial__indicator {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+
+/* Radial grip lines */
+.rr-dial__grip {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  transform-origin: center center;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.07) 25%,
+    rgba(0, 0, 0, 0.07) 75%,
+    transparent 100%
+  );
 }
 
 .rr-volume-dots {
