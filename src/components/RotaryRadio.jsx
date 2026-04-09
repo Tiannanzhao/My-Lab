@@ -170,11 +170,13 @@ export default function RotaryRadio() {
       {/* TOP BAR: power + LCD */}
       <div className="rr-header">
         <button
-          className={`rr-power ${isOn ? 'is-on' : ''}`}
+          className={`rr-toggle ${isOn ? 'is-on' : ''}`}
           onClick={togglePower}
           aria-label="Power"
         >
-          <span className="rr-power__dot" />
+          <span className="rr-toggle__track">
+            <span className="rr-toggle__thumb" />
+          </span>
         </button>
         <div className="rr-lcd">
           <div className={`rr-lcd__text ${isScrubbing ? 'is-scrubbing' : ''}`}>
