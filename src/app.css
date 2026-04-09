@@ -505,7 +505,7 @@ button.card-frame--video {
 .rr-grille {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(18, 1fr);
+  grid-template-columns: repeat(20, 1fr);
   gap: 3px;
   padding: 10px 6px;
   align-content: center;
