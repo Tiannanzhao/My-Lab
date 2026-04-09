@@ -305,18 +305,10 @@ export const cards = [
     link: 'https://bfy.fin.ai/',
   },
   {
-    id: 'video-showreel',
-    type: 'video',
-    top: '72%',
-    left: '36%',
-    src: intercomAsset('videos/2.mp4'),
-    label: 'Intercom Brand Showreel',
-  },
-  {
     id: 'rotary-radio',
     type: 'radio',
     top: '72%',
-    left: '51%',
+    left: '36%',
     label: 'Digital Rotary Radio',
   },
 ]
