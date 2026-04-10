@@ -38,6 +38,8 @@ export default function RotaryRadio() {
   const audioCtxRef = useRef(null)
   const sourceRef = useRef(null)
   const scrubTimeoutRef = useRef(null)
+  const noiseSourceRef = useRef(null)
+  const noiseGainRef = useRef(null)
   const dialRef = useRef(null)
   const dragRef = useRef(null)
 
@@ -56,6 +58,44 @@ export default function RotaryRadio() {
       if (progress >= target.length) clearInterval(interval)
     }, 30)
     return () => clearInterval(interval)
+  }, [])
+
+  const playStatic = useCallback((duration = 0.4) => {
+    if (!audioCtxRef.current) {
+      audioCtxRef.current = new (window.AudioContext || window.webkitAudioContext)()
+    }
+    const ctx = audioCtxRef.current
+    if (ctx.state === 'suspended') ctx.resume()
+
+    if (noiseSourceRef.current) {
+      try { noiseSourceRef.current.stop() } catch (_) {}
+    }
+
+    const sampleRate = ctx.sampleRate
+    const length = Math.floor(sampleRate * duration)
+    const buffer = ctx.createBuffer(1, length, sampleRate)
+    const data = buffer.getChannelData(0)
+    for (let i = 0; i < length; i++) {
+      data[i] = (Math.random() * 2 - 1)
+    }
+
+    const source = ctx.createBufferSource()
+    source.buffer = buffer
+
+    const gain = ctx.createGain()
+    gain.gain.setValueAtTime(0.12, ctx.currentTime)
+    gain.gain.linearRampToValueAtTime(0, ctx.currentTime + duration)
+
+    source.connect(gain)
+    gain.connect(ctx.destination)
+    source.start()
+    source.onended = () => {
+      noiseSourceRef.current = null
+      noiseGainRef.current = null
+    }
+
+    noiseSourceRef.current = source
+    noiseGainRef.current = gain
   }, [])
 
   const playStation = useCallback(
@@ -95,6 +135,11 @@ export default function RotaryRadio() {
       setStationIndex(wrapped)
       setIsScrubbing(true)
 
+      if (isOn) {
+        audioRef.current?.pause()
+        playStatic(0.4)
+      }
+
       if (scrubTimeoutRef.current) clearTimeout(scrubTimeoutRef.current)
 
       scrambleTo(STATIONS[wrapped].name)
@@ -106,7 +151,7 @@ export default function RotaryRadio() {
 
       setRotation(wrapped * (360 / STATIONS.length))
     },
-    [isOn, playStation, scrambleTo],
+    [isOn, playStation, playStatic, scrambleTo],
   )
 
   const togglePower = useCallback(() => {
