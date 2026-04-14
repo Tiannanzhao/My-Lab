@@ -556,6 +556,17 @@ button.card-frame--video {
 
 .rr-lcd__text.is-scrubbing {
   color: #666;
+  animation: rr-lcd-flicker 140ms steps(1, end) infinite;
+}
+
+@keyframes rr-lcd-flicker {
+  0% { opacity: 1; }
+  15% { opacity: 0.8; }
+  30% { opacity: 1; }
+  45% { opacity: 0.6; }
+  60% { opacity: 1; }
+  75% { opacity: 0.9; }
+  90% { opacity: 1; }
 }
 
 .rr-lcd__clock {

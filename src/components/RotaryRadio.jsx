@@ -12,6 +12,11 @@ const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 const GRILLE_COLS = 20
 const GRILLE_ROWS = 32
 
+const SCRUB_DURATION_MS = 400
+const STATIC_DURATION_MS = 600
+const STATIC_GAIN = 0.35
+const STATIC_FADE_FLOOR = 0.0001
+
 function useCurrentTime() {
   const [time, setTime] = useState(() => new Date())
   useEffect(() => {
@@ -38,10 +43,12 @@ export default function RotaryRadio() {
   const audioCtxRef = useRef(null)
   const sourceRef = useRef(null)
   const scrubTimeoutRef = useRef(null)
-  const noiseSourceRef = useRef(null)
-  const noiseGainRef = useRef(null)
   const dialRef = useRef(null)
   const dragRef = useRef(null)
+
+  const noiseBufferRef = useRef(null)
+  const staticSourceRef = useRef(null)
+  const staticGainRef = useRef(null)
 
   const scrambleTo = useCallback((target) => {
     let progress = 0
@@ -60,42 +67,79 @@ export default function RotaryRadio() {
     return () => clearInterval(interval)
   }, [])
 
-  const playStatic = useCallback((duration = 0.4) => {
-    if (!audioCtxRef.current) {
-      audioCtxRef.current = new (window.AudioContext || window.webkitAudioContext)()
+  const getStaticNoiseBuffer = useCallback((ctx) => {
+    const length = Math.ceil((ctx.sampleRate * STATIC_DURATION_MS) / 1000)
+    if (
+      noiseBufferRef.current &&
+      noiseBufferRef.current.sampleRate === ctx.sampleRate
+    ) {
+      return noiseBufferRef.current
     }
-    const ctx = audioCtxRef.current
-    if (ctx.state === 'suspended') ctx.resume()
-
-    if (noiseSourceRef.current) {
-      try { noiseSourceRef.current.stop() } catch (_) {}
-    }
-
-    const sampleRate = ctx.sampleRate
-    const length = Math.floor(sampleRate * duration)
-    const buffer = ctx.createBuffer(1, length, sampleRate)
+    const buffer = ctx.createBuffer(1, length, ctx.sampleRate)
     const data = buffer.getChannelData(0)
     for (let i = 0; i < length; i++) {
-      data[i] = (Math.random() * 2 - 1)
+      data[i] = Math.random() * 2 - 1
+    }
+    noiseBufferRef.current = buffer
+    return buffer
+  }, [])
+
+  const stopStaticNoise = useCallback(() => {
+    try {
+      if (staticSourceRef.current) {
+        staticSourceRef.current.stop()
+        staticSourceRef.current.disconnect()
+      }
+    } catch (_) {
+      // swallow duplicate-stop errors
+    }
+    try {
+      if (staticGainRef.current) {
+        staticGainRef.current.disconnect()
+      }
+    } catch (_) {
+      // swallow errors
+    }
+    staticSourceRef.current = null
+    staticGainRef.current = null
+  }, [])
+
+  const playStaticNoise = useCallback(async () => {
+    const ctx = audioCtxRef.current
+    if (!isOn || !ctx || ctx.state === 'closed') return
+
+    if (ctx.state === 'suspended') {
+      await ctx.resume()
     }
 
+    stopStaticNoise()
+
+    const buffer = getStaticNoiseBuffer(ctx)
     const source = ctx.createBufferSource()
     source.buffer = buffer
+    source.loop = true
 
     const gain = ctx.createGain()
-    gain.gain.setValueAtTime(0.12, ctx.currentTime)
-    gain.gain.linearRampToValueAtTime(0, ctx.currentTime + duration)
+    gain.gain.setValueAtTime(STATIC_GAIN, ctx.currentTime)
 
     source.connect(gain)
     gain.connect(ctx.destination)
-    source.start()
-    source.onended = () => {
-      noiseSourceRef.current = null
-      noiseGainRef.current = null
-    }
 
-    noiseSourceRef.current = source
-    noiseGainRef.current = gain
+    staticSourceRef.current = source
+    staticGainRef.current = gain
+
+    source.start()
+  }, [isOn, getStaticNoiseBuffer, stopStaticNoise])
+
+  const fadeOutStaticNoise = useCallback(() => {
+    const ctx = audioCtxRef.current
+    if (!ctx || !staticGainRef.current || !staticSourceRef.current) return
+    try {
+      staticGainRef.current.gain.cancelScheduledValues(ctx.currentTime)
+      staticGainRef.current.gain.setValueAtTime(staticGainRef.current.gain.value, ctx.currentTime)
+      staticGainRef.current.gain.linearRampToValueAtTime(STATIC_FADE_FLOOR, ctx.currentTime + 0.15)
+      staticSourceRef.current.stop(ctx.currentTime + 0.15)
+    } catch (_) {}
   }, [])
 
   const playStation = useCallback(
@@ -135,23 +179,13 @@ export default function RotaryRadio() {
       setStationIndex(wrapped)
       setIsScrubbing(true)
 
-      if (isOn) {
-        audioRef.current?.pause()
-        playStatic(0.4)
-      }
-
       if (scrubTimeoutRef.current) clearTimeout(scrubTimeoutRef.current)
 
       scrambleTo(STATIONS[wrapped].name)
 
-      scrubTimeoutRef.current = setTimeout(() => {
-        setIsScrubbing(false)
-        if (isOn) playStation(wrapped)
-      }, 400)
-
       setRotation(wrapped * (360 / STATIONS.length))
     },
-    [isOn, playStation, playStatic, scrambleTo],
+    [scrambleTo],
   )
 
   const togglePower = useCallback(() => {
@@ -175,6 +209,12 @@ export default function RotaryRadio() {
       const startAngle = Math.atan2(e.clientY - cy, e.clientX - cx)
       dragRef.current = { startAngle, startRotation: rotation, lastIndex: stationIndex }
 
+      // Pause music and start continuous static noise on drag start
+      if (isOn) {
+        audioRef.current?.pause()
+        playStaticNoise()
+      }
+
       const onMove = (ev) => {
         const angle = Math.atan2(ev.clientY - cy, ev.clientX - cx)
         const delta = ((angle - dragRef.current.startAngle) * 180) / Math.PI
@@ -193,12 +233,22 @@ export default function RotaryRadio() {
       const onUp = () => {
         window.removeEventListener('pointermove', onMove)
         window.removeEventListener('pointerup', onUp)
+
+        // Fade out static noise and resume the selected station
+        fadeOutStaticNoise()
+        setIsScrubbing(false)
+        if (isOn) {
+          const idx = dragRef.current.lastIndex
+          scrubTimeoutRef.current = setTimeout(() => {
+            playStation(idx)
+          }, 180)
+        }
       }
 
       window.addEventListener('pointermove', onMove)
       window.addEventListener('pointerup', onUp)
     },
-    [rotation, stationIndex, changeStation],
+    [rotation, stationIndex, changeStation, isOn, playStaticNoise, fadeOutStaticNoise, playStation],
   )
 
   useEffect(() => {
