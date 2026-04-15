@@ -1,0 +1,192 @@
+- generic [ref=e29]:
+  - generic [ref=e30]:
+    - generic [ref=e31]: Intercom Brand Reel
+    - button [ref=e32]
+  - generic [ref=e42]: Vibe4Trading ASCII Hero
+  - link "How to design standout products in an AI world" [ref=e47] [cursor=pointer]:
+    - /url: https://www.youtube.com/watch?v=rc1WGS8QNeI
+    - generic [ref=e48]: How to design standout products in an AI world
+    - img [ref=e52]
+  - generic [ref=e54]:
+    - generic [ref=e55]: Why Anthropic Chose Fin
+    - iframe [ref=e57]:
+      - generic [active] [ref=f1e1]:
+        - generic [ref=f1e6]:
+          - button "Play on Spotify" [ref=f1e10] [cursor=pointer]:
+            - img [ref=f1e11]
+          - generic [ref=f1e13]:
+            - heading "Why Anthropic chose Fin to transform their customer support" [level=1] [ref=f1e14]:
+              - link "Why Anthropic chose Fin to transform their customer support" [ref=f1e18] [cursor=pointer]:
+                - /url: https://open.spotify.com/episode/5F4PfFZhgVnPWlNJedKj4n?go=1&sp_cid=39213da238ac41240fa4c11b0cbe613e&utm_source=embed_player_p&utm_medium=desktop
+            - 'heading "Feb 20 The Ticket: Discover the Future of Customer Service, Support, and Experience, with Intercom" [level=2] [ref=f1e28]':
+              - generic [ref=f1e24]:
+                - generic [ref=f1e29]: Feb 20
+                - generic [ref=f1e25]: ·
+                - 'link "The Ticket: Discover the Future of Customer Service, Support, and Experience, with Intercom" [ref=f1e26] [cursor=pointer]':
+                  - /url: https://open.spotify.com/show/6zlcXgcd2kX9E4cbQTCsR9?go=1&sp_cid=39213da238ac41240fa4c11b0cbe613e&utm_source=embed_player_p&utm_medium=desktop
+            - button "Save on Spotify" [ref=f1e31] [cursor=pointer]:
+              - img [ref=f1e33]
+              - generic [ref=f1e36]: Save on Spotify
+          - generic [ref=f1e37]:
+            - generic [ref=f1e38]:
+              - generic [ref=f1e39]:
+                - button "Skip back 15 seconds" [disabled] [ref=f1e40]:
+                  - img [ref=f1e42]
+                - generic [ref=f1e46]:
+                  - text: Change progress
+                  - slider "Change progress" [disabled] [ref=f1e47]: "0"
+                - button "Skip forward 15 seconds" [disabled] [ref=f1e51]:
+                  - img [ref=f1e53]
+              - button "38:23 remaining time. Toggle to elapsed." [disabled] [pressed] [ref=f1e56] [cursor=pointer]:
+                - generic [ref=f1e57]: 38:23
+              - button "More" [ref=f1e58] [cursor=pointer]:
+                - img [ref=f1e59]
+            - button "Play" [ref=f1e62] [cursor=pointer]:
+              - img "Something went wrong" [ref=f1e63]
+        - alert [ref=f1e65]
+  - generic [ref=e58]:
+    - generic [ref=e59]: Navigating AI-First Customer Service
+    - iframe [ref=e61]:
+      - generic [active] [ref=f2e1]:
+        - generic [ref=f2e6]:
+          - button "Play on Spotify" [ref=f2e10] [cursor=pointer]:
+            - img [ref=f2e11]
+          - generic [ref=f2e13]:
+            - heading "Navigating a new era of AI-first customer service" [level=1] [ref=f2e14]:
+              - link "Navigating a new era of AI-first customer service" [ref=f2e18] [cursor=pointer]:
+                - /url: https://open.spotify.com/episode/6JJx8dpieFuAmzayEbJdYs?go=1&sp_cid=39213da238ac41240fa4c11b0cbe613e&utm_source=embed_player_p&utm_medium=desktop
+            - 'heading "Feb 27 The Ticket: Discover the Future of Customer Service, Support, and Experience, with Intercom" [level=2] [ref=f2e28]':
+              - generic [ref=f2e24]:
+                - generic [ref=f2e29]: Feb 27
+                - generic [ref=f2e25]: ·
+                - 'link "The Ticket: Discover the Future of Customer Service, Support, and Experience, with Intercom" [ref=f2e26] [cursor=pointer]':
+                  - /url: https://open.spotify.com/show/6zlcXgcd2kX9E4cbQTCsR9?go=1&sp_cid=39213da238ac41240fa4c11b0cbe613e&utm_source=embed_player_p&utm_medium=desktop
+            - button "Save on Spotify" [ref=f2e31] [cursor=pointer]:
+              - img [ref=f2e33]
+              - generic [ref=f2e36]: Save on Spotify
+          - generic [ref=f2e37]:
+            - generic [ref=f2e38]:
+              - generic [ref=f2e39]:
+                - button "Skip back 15 seconds" [disabled] [ref=f2e40]:
+                  - img [ref=f2e42]
+                - generic [ref=f2e46]:
+                  - text: Change progress
+                  - slider "Change progress" [disabled] [ref=f2e47]: "0"
+                - button "Skip forward 15 seconds" [disabled] [ref=f2e51]:
+                  - img [ref=f2e53]
+              - button "31:20 remaining time. Toggle to elapsed." [disabled] [pressed] [ref=f2e56] [cursor=pointer]:
+                - generic [ref=f2e57]: 31:20
+              - button "More" [ref=f2e58] [cursor=pointer]:
+                - img [ref=f2e59]
+            - button "Play" [ref=f2e62] [cursor=pointer]:
+              - img "Something went wrong" [ref=f2e63]
+        - alert [ref=f2e65]
+  - generic [ref=e62]:
+    - generic [ref=e63]: A Day In The Life Of A Conversation Designer
+    - iframe [ref=e65]:
+      - generic [active] [ref=f3e1]:
+        - generic [ref=f3e6]:
+          - button "Play on Spotify" [ref=f3e10] [cursor=pointer]:
+            - img [ref=f3e11]
+          - generic [ref=f3e13]:
+            - heading "A day in the life of a conversation designer" [level=1] [ref=f3e14]:
+              - link "A day in the life of a conversation designer" [ref=f3e18] [cursor=pointer]:
+                - /url: https://open.spotify.com/episode/4fxGDCRdLwO1Zs7YQm8YMz?go=1&sp_cid=39213da238ac41240fa4c11b0cbe613e&utm_source=embed_player_p&utm_medium=desktop
+            - 'heading "Sep 19 The Ticket: Discover the Future of Customer Service, Support, and Experience, with Intercom" [level=2] [ref=f3e28]':
+              - generic [ref=f3e24]:
+                - generic [ref=f3e29]: Sep 19
+                - generic [ref=f3e25]: ·
+                - 'link "The Ticket: Discover the Future of Customer Service, Support, and Experience, with Intercom" [ref=f3e26] [cursor=pointer]':
+                  - /url: https://open.spotify.com/show/6zlcXgcd2kX9E4cbQTCsR9?go=1&sp_cid=39213da238ac41240fa4c11b0cbe613e&utm_source=embed_player_p&utm_medium=desktop
+            - button "Save on Spotify" [ref=f3e31] [cursor=pointer]:
+              - img [ref=f3e33]
+              - generic [ref=f3e36]: Save on Spotify
+          - generic [ref=f3e37]:
+            - generic [ref=f3e38]:
+              - generic [ref=f3e39]:
+                - button "Skip back 15 seconds" [disabled] [ref=f3e40]:
+                  - img [ref=f3e42]
+                - generic [ref=f3e46]:
+                  - text: Change progress
+                  - slider "Change progress" [disabled] [ref=f3e47]: "0"
+                - button "Skip forward 15 seconds" [disabled] [ref=f3e51]:
+                  - img [ref=f3e53]
+              - button "31:22 remaining time. Toggle to elapsed." [disabled] [pressed] [ref=f3e56] [cursor=pointer]:
+                - generic [ref=f3e57]: 31:22
+              - button "More" [ref=f3e58] [cursor=pointer]:
+                - img [ref=f3e59]
+            - button "Play" [ref=f3e62] [cursor=pointer]:
+              - img "Something went wrong" [ref=f3e63]
+        - alert [ref=f3e65]
+  - generic [ref=e67]:
+    - paragraph [ref=e68]:
+      - generic [ref=e70]: Welcome to my lab
+    - paragraph [ref=e71]: This is where I experiment. I design products. I also build them. With AI, fast, and from scratch.
+  - generic [ref=e72]:
+    - generic [ref=e73]: Why do we expect our AI products to be flawless?
+    - article [ref=e74]:
+      - paragraph [ref=e76]: When people evaluate AI, they don't compare it to how humans actually perform - they compare it to perfection. That's a standard humans rarely meet. We forgive human error, but even a single AI misstep can erode trust completely. This double standard means AI has to earn trust in ways humans don't.
+      - link "READ MORE" [ref=e77] [cursor=pointer]:
+        - /url: https://fin.ai/ideas/why-do-we-expect-our-ai-products-to-be-flawless/
+        - generic [ref=e78]: READ MORE
+  - generic [ref=e79]:
+    - generic [ref=e80]: "A new age of UX: Evolving your design approach for AI products"
+    - article [ref=e81]:
+      - generic [ref=e82]:
+        - paragraph [ref=e83]: Before ChatGPT rolled onto the scene a year ago, artificial intelligence (AI) and machine learning (ML) were the mysterious tools of experts and data scientists - teams with a lot of niche experience and specialized domain knowledge. Now, things are different.
+        - paragraph
+        - paragraph [ref=e84]: You're probably reading this because your company has decided to use OpenAI's GPT or another LLM (large language model) to build generative AI features into your product.
+      - link "READ MORE" [ref=e85] [cursor=pointer]:
+        - /url: https://www.intercom.com/blog/design-ux-machine-learning-ai/
+        - generic [ref=e86]: READ MORE
+  - generic [ref=e87]:
+    - generic [ref=e88]: "This is getting real: Welcome to the AI revolution"
+    - article [ref=e89]:
+      - paragraph [ref=e91]: AI is no longer a distant promise - it's here, and it's changing everything. From customer support to product design, the AI revolution is reshaping how we work, interact, and innovate. Are you ready to pioneer the future?
+      - link "READ MORE" [ref=e92] [cursor=pointer]:
+        - /url: https://www.intercom.com/blog/videos/pioneer-this-is-getting-real-ai-revolution/
+        - generic [ref=e93]: READ MORE
+  - button "POSTS" [ref=e94] [cursor=pointer]:
+    - generic [ref=e96]: POSTS
+  - button "VIDEOS" [ref=e97] [cursor=pointer]:
+    - generic [ref=e99]: VIDEOS
+  - button "PODCASTS" [ref=e100] [cursor=pointer]:
+    - generic [ref=e102]: PODCASTS
+  - link [ref=e103] [cursor=pointer]:
+    - /url: https://verifiedinsider.substack.com/p/design-at-intercom
+    - article [ref=e104]:
+      - generic [ref=e105]: AI isn't killing design, it's making it matter more. And the companies that get that? They're not scaling back their design teams. They're expecting more from them. And giving them more power in return.
+      - generic [ref=e107]: READ MORE
+  - link [ref=e108] [cursor=pointer]:
+    - /url: https://thoughtwax.com/2025/03/terminal-velocity/
+    - article [ref=e109]:
+      - generic [ref=e110]: You can feel the shape of what's coming - even if the tools are still clunky, the future is clearly starting to boot up.
+      - generic [ref=e112]: READ MORE
+  - link [ref=e113] [cursor=pointer]:
+    - /url: https://fin.ai/ideas/why-do-we-expect-our-ai-products-to-be-flawless/
+    - article [ref=e114]:
+      - generic [ref=e115]: I was going to title this 'Why can't we let self-driving cars kill anyone?' but I thought that might be a bit too much.
+      - generic [ref=e117]: READ MORE
+  - generic [ref=e118]:
+    - generic [ref=e119]: Built For You 2025
+    - link [ref=e120] [cursor=pointer]:
+      - /url: https://bfy.fin.ai/
+  - generic [ref=e123]:
+    - generic [ref=e124]: Digital Rotary Radio
+    - generic [ref=e126]:
+      - generic [ref=e127]:
+        - button "Power" [active] [ref=e128] [cursor=pointer]
+        - generic [ref=e133]:
+          - generic [ref=e134]: Lo-Fi Beats
+          - generic [ref=e135]: 17:47 10 Apr
+      - generic [ref=e786]:
+        - generic [ref=e787]: RADIO
+        - generic [ref=e788]: Web Player
+  - link "ArrowPrompt - AI Coding Shortcuts extension" [ref=e805] [cursor=pointer]:
+    - /url: https://chromewebstore.google.com/detail/arrowprompt-ai-coding-sho/dkbcpkedebdmddoaebgejhaieelflfef
+    - generic [ref=e806]: ArrowPrompt - AI Coding Shortcuts extension
+    - generic [ref=e808]:
+      - generic [ref=e827]: Explain code
+      - generic [ref=e856]: Fix bug
+      - generic [ref=e858]: Optimize
+      - generic [ref=e878]: Translate

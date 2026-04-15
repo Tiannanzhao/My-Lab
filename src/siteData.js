@@ -4,6 +4,21 @@ export function intercomAsset(path) {
   return `${ASSET_BASE}/${path}`
 }
 
+export const archiveData = [
+  { title: 'Copy Design', product: 'Figma', date: 'September 2025' },
+  { title: 'Clocks for iOS', product: 'Side Project', date: 'May 2025' },
+  { title: 'Code Layers', product: 'Figma', date: 'May 2025' },
+  { title: 'Figma Make', product: 'Figma', date: 'May 2025' },
+  { title: 'Photo Gradient', product: 'Side Project', date: 'November 2024' },
+  { title: 'Community Redesign', product: 'Figma', date: 'May 2024' },
+  { title: 'Dieter Dots', product: 'Side Project', date: 'August 2024' },
+  { title: 'Vector Fields', product: 'Side Project', date: 'July 2024' },
+  { title: 'Selection Text', product: 'Side Project', date: 'May 2024' },
+  { title: 'Monetization Experiments', product: 'Figma', date: 'November 2023' },
+  { title: 'Variable Finder', product: 'Side Project', date: 'May 2023' },
+  { title: 'Mobile App Redesign', product: 'Discord', date: 'May 2023' },
+]
+
 export const articlesData = {
   posts: {
     title: 'POSTS',
@@ -248,13 +263,13 @@ export const cards = [
     folderId: 'posts',
   },
   {
-    id: 'folder-videos',
+    id: 'folder-archive',
     type: 'folder',
     top: '47%',
     left: '62%',
-    title: 'VIDEOS',
-    label: 'VIDEOS',
-    folderId: 'talks',
+    title: 'Archive of work',
+    label: 'Archive of work',
+    folderId: 'resume',
   },
   {
     id: 'folder-podcasts',

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import './app.css'
-import { articlesData, cards, intercomAsset } from './siteData'
+import { archiveData, articlesData, cards, intercomAsset } from './siteData'
 import VibeAsciiCard from './components/VibeAsciiCard'
 import RotaryRadio from './components/RotaryRadio'
 
@@ -222,6 +222,42 @@ function Minimap({ layoutCards, hoveredType, canvasSize, viewport, offset }) {
           }}
         />
       ))}
+    </div>
+  )
+}
+
+function ArchiveModal({ onClose }) {
+  useEffect(() => {
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [onClose])
+
+  return (
+    <div className="overlay" onClick={onClose}>
+      <div className="modal-panel modal-panel--archive" onClick={(event) => event.stopPropagation()}>
+        <div className="modal-header">
+          <h2>Archive of work</h2>
+          <button className="modal-close" onClick={onClose} aria-label="Close modal">
+            X
+          </button>
+        </div>
+        <div className="archive-list">
+          {archiveData.map((item, index) => (
+            <div
+              key={item.title}
+              className="archive-row"
+              style={{ '--enter-delay': `${index * 40}ms` }}
+            >
+              <span className="archive-title">{item.title}</span>
+              <span className="archive-product">{item.product}</span>
+              <span className="archive-date">{item.date}</span>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
@@ -790,7 +826,8 @@ export default function App() {
         </div>
       </div>
 
-      {openFolderId ? <ArticlesModal folder={articlesData[openFolderId]} onClose={() => setOpenFolderId(null)} /> : null}
+      {openFolderId === 'resume' ? <ArchiveModal onClose={() => setOpenFolderId(null)} /> : null}
+      {openFolderId && openFolderId !== 'resume' ? <ArticlesModal folder={articlesData[openFolderId]} onClose={() => setOpenFolderId(null)} /> : null}
       {openVideo ? <VideoModal video={openVideo} onClose={() => setOpenVideo(null)} /> : null}
     </div>
   )
