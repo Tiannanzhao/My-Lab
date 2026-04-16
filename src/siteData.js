@@ -5,18 +5,22 @@ export function intercomAsset(path) {
 }
 
 export const archiveData = [
-  { title: 'Copy Design', product: 'Figma', date: 'September 2025' },
-  { title: 'Clocks for iOS', product: 'Side Project', date: 'May 2025' },
-  { title: 'Code Layers', product: 'Figma', date: 'May 2025' },
-  { title: 'Figma Make', product: 'Figma', date: 'May 2025' },
-  { title: 'Photo Gradient', product: 'Side Project', date: 'November 2024' },
-  { title: 'Community Redesign', product: 'Figma', date: 'May 2024' },
-  { title: 'Dieter Dots', product: 'Side Project', date: 'August 2024' },
-  { title: 'Vector Fields', product: 'Side Project', date: 'July 2024' },
-  { title: 'Selection Text', product: 'Side Project', date: 'May 2024' },
-  { title: 'Monetization Experiments', product: 'Figma', date: 'November 2023' },
-  { title: 'Variable Finder', product: 'Side Project', date: 'May 2023' },
-  { title: 'Mobile App Redesign', product: 'Discord', date: 'May 2023' },
+  { title: 'AI crypto benchmark', product: 'Vibe4trading', category: 'Side Project', date: 'Mar 2026' },
+  { title: 'AI Coding Shortcuts', product: 'ArrowPrompt', category: 'Side Project', date: 'Jan 2026' },
+  { title: '0→1 product & roadmap', product: 'Bagelpay', category: 'Freelance', date: 'Aug 2025' },
+  { title: 'Cross channel campaign builder', product: 'Ometria', category: 'Product', date: 'Jan 2025' },
+  { title: 'AI dating therapy', product: 'Mingle AI', category: 'Side Project', date: 'Oct 2024' },
+  { title: 'Subscriber reports', product: 'Ometria', category: 'Product', date: 'Sep 2024' },
+  { title: 'Conversational AI insight agents', product: 'Ometria', category: 'Product', date: 'Jul 2024' },
+  { title: 'AI visual & motion system', product: 'Ometria', category: 'Design Systems', date: '2024' },
+  { title: '0→1 product', product: 'Net-ify', category: 'Side Project', date: 'Apr 2024' },
+  { title: 'Omnichannel delivery experience', product: 'Burberry', category: 'UX Strategy', date: 'Oct 2022' },
+  { title: 'Cross-platform design system', product: 'Burberry', category: 'Design Systems', date: '2023' },
+  { title: 'Professional networking + CRM', product: 'Net-ify', category: 'Side Project', date: 'Apr 2023' },
+  { title: 'Order-to-operations management system', product: 'Collectiv Food', category: '0→1 Product', date: 'Mar 2021' },
+  { title: 'Scooter platform UX & web', product: 'Segway-Ninebot', category: 'Freelance', date: '2019' },
+  { title: 'Copyright revenue calculator', product: 'Believe Music', category: 'Freelance', date: '2020' },
+  { title: 'Digital campaign + motion assets', product: 'Hylink', category: 'Brand', date: 'Mar 2020' },
 ]
 
 export const articlesData = {
@@ -95,41 +99,6 @@ export const articlesData = {
       },
     ],
   },
-  podcasts: {
-    title: 'PODCASTS',
-    articles: [
-      {
-        title: 'Why Anthropic chose Fin to transform their customer support',
-        author: 'Intercom Podcast',
-        url: 'https://www.intercom.com/blog/podcasts/why-anthropic-chose-fin-to-transform-their-customer-support/',
-      },
-      {
-        title: 'A day in the life of a conversation designer',
-        author: 'Intercom Podcast',
-        url: 'https://www.intercom.com/blog/videos/the-ticket-a-day-in-the-life-of-a-conversation-designer/',
-      },
-      {
-        title: 'Navigating a new era of AI-first customer service',
-        author: 'Intercom Podcast',
-        url: 'https://www.intercom.com/blog/videos/navigating-a-new-era-of-ai-first-customer-service/',
-      },
-      {
-        title: 'From siloed to seamless: what it really takes to unify the customer journey',
-        author: 'Intercom Podcast',
-        url: 'https://www.youtube.com/watch?v=dXgbGKpSEvk&list=PLlCIldMZCaFrn43ZNAiw00icA-nRW5wVF&index=1',
-      },
-      {
-        title: 'The future of customer experience starts with smarter listening',
-        author: 'Intercom Podcast',
-        url: 'https://www.intercom.com/blog/videos/the-future-of-customer-experience-starts-with-smarter-listening/',
-      },
-      {
-        title: 'The hidden cost of misdiagnosing customer issues (and how AI can help)',
-        author: 'Intercom Podcast',
-        url: 'https://www.intercom.com/blog/videos/the-hidden-cost-of-misdiagnosing-customer-issues/',
-      },
-    ],
-  },
 }
 
 export const cards = [
@@ -140,14 +109,6 @@ export const cards = [
     left: '19%',
     src: intercomAsset('videos/1_1.mp4'),
     label: 'Intercom Brand Reel',
-  },
-  {
-    id: 'img-1',
-    type: 'image',
-    top: '20%',
-    left: '38%',
-    src: intercomAsset('images/img1.png'),
-    label: '',
   },
   {
     id: 'img-4',
@@ -191,28 +152,12 @@ export const cards = [
     label: 'How to design standout products in an AI world',
   },
   {
-    id: 'spotify-anthropic',
+    id: 'spotify-my-podcast',
     type: 'spotify',
-    top: '28%',
+    top: '44%',
     left: '74%',
-    embedId: 'episode/5F4PfFZhgVnPWlNJedKj4n',
-    label: 'Why Anthropic Chose Fin',
-  },
-  {
-    id: 'spotify-ai-service',
-    type: 'spotify',
-    top: '20%',
-    left: '78%',
-    embedId: 'episode/6JJx8dpieFuAmzayEbJdYs',
-    label: 'Navigating AI-First Customer Service',
-  },
-  {
-    id: 'spotify-conversation-designer',
-    type: 'spotify',
-    top: '36%',
-    left: '78%',
-    embedId: '4fxGDCRdLwO1Zs7YQm8YMz',
-    label: 'A Day In The Life Of A Conversation Designer',
+    embedId: 'episode/3Cx51u7IWPEjufztYSrPWq',
+    label: 'My Podcast Episode',
   },
   {
     id: 'logo',
@@ -270,15 +215,6 @@ export const cards = [
     title: 'Archive of work',
     label: 'Archive of work',
     folderId: 'resume',
-  },
-  {
-    id: 'folder-podcasts',
-    type: 'folder',
-    top: '15%',
-    left: '60%',
-    title: 'PODCASTS',
-    label: 'PODCASTS',
-    folderId: 'podcasts',
   },
   {
     id: 'quote-design',

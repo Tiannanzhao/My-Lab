@@ -3,6 +3,7 @@ import './app.css'
 import { archiveData, articlesData, cards, intercomAsset } from './siteData'
 import VibeAsciiCard from './components/VibeAsciiCard'
 import RotaryRadio from './components/RotaryRadio'
+import { BorderBeam } from 'border-beam'
 
 const MIN_CANVAS_WIDTH = 4320
 const MIN_CANVAS_HEIGHT = 2640
@@ -193,7 +194,10 @@ function highlightQuote(text, highlight, colorClass) {
   )
 }
 
-function Minimap({ layoutCards, hoveredType, canvasSize, viewport, offset }) {
+function Minimap({ layoutCards, hoveredType, canvasSize, viewport, offset, onNavigate }) {
+  const minimapRef = useRef(null)
+  const draggingRef = useRef(false)
+
   if (viewport.width <= 768) return null
 
   const width = 320
@@ -207,8 +211,44 @@ function Minimap({ layoutCards, hoveredType, canvasSize, viewport, offset }) {
     height: viewport.height * scaleY,
   }
 
+  const navigateToPoint = (clientX, clientY) => {
+    const rect = minimapRef.current.getBoundingClientRect()
+    const clickX = clientX - rect.left
+    const clickY = clientY - rect.top
+    const canvasX = clickX / scaleX
+    const canvasY = clickY / scaleY
+    const newOffsetX = -(canvasX - viewport.width / 2)
+    const newOffsetY = -(canvasY - viewport.height / 2)
+    onNavigate(clampOffset(newOffsetX, newOffsetY, canvasSize, viewport))
+  }
+
+  const handlePointerDown = (e) => {
+    e.stopPropagation()
+    e.preventDefault()
+    draggingRef.current = true
+    minimapRef.current.setPointerCapture(e.pointerId)
+    navigateToPoint(e.clientX, e.clientY)
+  }
+
+  const handlePointerMove = (e) => {
+    if (!draggingRef.current) return
+    navigateToPoint(e.clientX, e.clientY)
+  }
+
+  const handlePointerUp = (e) => {
+    draggingRef.current = false
+    minimapRef.current.releasePointerCapture(e.pointerId)
+  }
+
   return (
-    <div className={`minimap ${hoveredType ? `highlight-${hoveredType}` : ''}`} style={{ width, height }}>
+    <div
+      ref={minimapRef}
+      className={`minimap ${hoveredType ? `highlight-${hoveredType}` : ''}`}
+      style={{ width, height, cursor: 'pointer' }}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+    >
       <div className="map-viewport" style={viewportRect} />
       {layoutCards.map((card) => (
         <div
@@ -219,6 +259,7 @@ function Minimap({ layoutCards, hoveredType, canvasSize, viewport, offset }) {
             top: card.position.top * scaleY,
             width: Math.max(8, card.frame.width * scaleX),
             height: Math.max(8, card.frame.height * scaleY),
+            pointerEvents: 'none',
           }}
         />
       ))}
@@ -237,27 +278,30 @@ function ArchiveModal({ onClose }) {
 
   return (
     <div className="overlay" onClick={onClose}>
-      <div className="modal-panel modal-panel--archive" onClick={(event) => event.stopPropagation()}>
-        <div className="modal-header">
-          <h2>Archive of work</h2>
-          <button className="modal-close" onClick={onClose} aria-label="Close modal">
-            X
-          </button>
+      <BorderBeam colorVariant="colorful" size="md" theme="dark" strength={0.5} duration={3.32}>
+        <div className="modal-panel modal-panel--archive" onClick={(event) => event.stopPropagation()}>
+          <div className="modal-header">
+            <h2>Archive of work</h2>
+            <button className="modal-close" onClick={onClose} aria-label="Close modal">
+              X
+            </button>
+          </div>
+          <div className="archive-list">
+            {archiveData.map((item, index) => (
+              <div
+                key={item.title}
+                className="archive-row"
+                style={{ '--enter-delay': `${index * 40}ms` }}
+              >
+                <span className="archive-title">{item.title}</span>
+                <span className="archive-product">{item.product}</span>
+                <span className="archive-category">{item.category}</span>
+                <span className="archive-date">{item.date}</span>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="archive-list">
-          {archiveData.map((item, index) => (
-            <div
-              key={item.title}
-              className="archive-row"
-              style={{ '--enter-delay': `${index * 40}ms` }}
-            >
-              <span className="archive-title">{item.title}</span>
-              <span className="archive-product">{item.product}</span>
-              <span className="archive-date">{item.date}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+      </BorderBeam>
     </div>
   )
 }
@@ -484,9 +528,19 @@ function CanvasCard({ card, frame, index, onFolderOpen, onVideoOpen, onHoverType
         data-interactive="true"
       >
         <div className="card-title">{card.label}</div>
-        <div className="card-frame card-frame--ascii" style={{ height: frame.height }}>
-          <VibeAsciiCard />
-        </div>
+        <a
+          href="https://vibe4trading.ai/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ascii-card-link"
+        >
+          <BorderBeam colorVariant="colorful" size="md" theme="dark" strength={0.5} duration={2.55}>
+            <div className="card-frame card-frame--ascii" style={{ height: frame.height }}>
+              <VibeAsciiCard />
+            </div>
+          </BorderBeam>
+          <div className="ascii-read-more">Read more</div>
+        </a>
       </div>
     )
   }
@@ -650,6 +704,7 @@ export default function App() {
   const dragStateRef = useRef(null)
   const [viewport, setViewport] = useState({ width: window.innerWidth, height: window.innerHeight })
   const [offset, setOffset] = useState({ x: 0, y: 0 })
+  const [isAnimating, setIsAnimating] = useState(false)
   const [isIlluminated, setIsIlluminated] = useState(false)
   const [hoveredType, setHoveredType] = useState(null)
   const [openFolderId, setOpenFolderId] = useState(null)
@@ -763,6 +818,7 @@ export default function App() {
 
   const handleWheel = (event) => {
     event.preventDefault()
+    setIsAnimating(false)
     const next = clampOffset(
       offset.x - event.deltaX * 1.8,
       offset.y - event.deltaY * 1.8,
@@ -775,6 +831,7 @@ export default function App() {
   const handlePointerDown = (event) => {
     if (event.button !== 0) return
     if (event.target.closest('[data-interactive="true"]')) return
+    setIsAnimating(false)
 
     dragStateRef.current = {
       start: { x: event.clientX, y: event.clientY },
@@ -791,6 +848,7 @@ export default function App() {
         canvasSize={canvasSize}
         viewport={viewport}
         offset={offset}
+        onNavigate={(newOffset) => { setIsAnimating(true); setOffset(newOffset) }}
       />
 
       <div
@@ -809,7 +867,9 @@ export default function App() {
             width: canvasSize.width,
             height: canvasSize.height,
             transform: `translate3d(${offset.x}px, ${offset.y}px, 0)`,
+            transition: isAnimating ? 'transform 800ms cubic-bezier(0.25, 1.05, 0.5, 1)' : 'none',
           }}
+          onTransitionEnd={() => setIsAnimating(false)}
         >
           {layoutCards.map((card, index) => (
             <CanvasCard
