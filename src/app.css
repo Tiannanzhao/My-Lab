@@ -342,7 +342,13 @@ button.card-frame--video {
   padding: 20px;
 }
 
-.media-image,
+.media-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .media-video {
   display: block;
   width: 100%;
@@ -803,10 +809,21 @@ button.card-frame--video {
 }
 
 .quote-card {
+  position: relative;
   width: 100%;
   padding: 0;
   border: 0;
   background: transparent;
+}
+
+.quote-icon {
+  position: absolute;
+  top: -44px;
+  left: -34px;
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  pointer-events: none;
 }
 
 .quote-copy {

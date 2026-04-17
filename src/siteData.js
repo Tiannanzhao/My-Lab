@@ -1,3 +1,6 @@
+import epicTeamImg from './assets/epic-team.png'
+import flowerIcon from './assets/flower-icon.png'
+
 const ASSET_BASE = 'https://intercom.design/assets'
 
 export function intercomAsset(path) {
@@ -104,19 +107,11 @@ export const articlesData = {
 export const cards = [
   {
     id: 'brand-reel',
-    type: 'video',
+    type: 'image',
     top: '25%',
     left: '19%',
-    src: intercomAsset('videos/1_1.mp4'),
-    label: 'Intercom Brand Reel',
-  },
-  {
-    id: 'img-4',
-    type: 'image',
-    top: '2%',
-    left: '67%',
-    src: intercomAsset('images/img4.png'),
-    label: '',
+    src: epicTeamImg,
+    label: 'EPICConnector Team',
     originalSize: true,
   },
   {
@@ -221,8 +216,9 @@ export const cards = [
     type: 'blockquote',
     top: '54%',
     left: '30%',
-    text: "AI isn't killing design, it's making it matter more. And the companies that get that? They're not scaling back their design teams. They're expecting more from them. And giving them more power in return.",
-    highlight: "AI isn't killing design, it's making it matter more.",
+    icon: flowerIcon,
+    text: "Tools for designers, I build design skills that help AI understand taste, not just UI appearance.",
+    highlight: "Tools for designers, I build design skills",
     highlightColor: 'accent-gold',
     link: 'https://verifiedinsider.substack.com/p/design-at-intercom',
   },
@@ -245,15 +241,6 @@ export const cards = [
     highlight: "Why can't we let self-driving cars kill anyone?",
     highlightColor: 'accent-orchid',
     link: 'https://fin.ai/ideas/why-do-we-expect-our-ai-products-to-be-flawless/',
-  },
-  {
-    id: 'video-bfy',
-    type: 'video',
-    top: '48%',
-    left: '83%',
-    src: intercomAsset('videos/hero-loop.mp4'),
-    label: 'Built For You 2025',
-    link: 'https://bfy.fin.ai/',
   },
   {
     id: 'rotary-radio',

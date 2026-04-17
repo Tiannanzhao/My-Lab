@@ -63,7 +63,7 @@ function getCardFrame(card, viewportWidth) {
       return { width: 600, height: 338 }
     case 'image':
       if (card.originalSize) {
-        return isMobile ? { width: 280, height: 320 } : { width: 380, height: 420 }
+        return isMobile ? { width: 320, height: 175 } : { width: 500, height: 273 }
       }
       return isMobile ? { width: 320, height: 213 } : { width: 600, height: 400 }
     case 'ascii':
@@ -689,6 +689,7 @@ function CanvasCard({ card, frame, index, onFolderOpen, onVideoOpen, onHoverType
       data-interactive="true"
     >
       <article className="quote-card">
+        {card.icon && <img className="quote-icon" src={card.icon} alt="" draggable="false" />}
         <div className="quote-copy">{highlightQuote(card.text, card.highlight, card.highlightColor)}</div>
         <div className="read-more read-more--inline">
           <HoverScrambleText text="READ MORE" />
