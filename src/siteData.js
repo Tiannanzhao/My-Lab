@@ -220,7 +220,7 @@ export const cards = [
     text: "Tools for designers, I build design skills that help AI understand taste, not just UI appearance.",
     highlight: "Tools for designers, I build design skills",
     highlightColor: 'accent-gold',
-    link: 'https://verifiedinsider.substack.com/p/design-at-intercom',
+    link: 'https://github.com/Tiannanzhao/design-feel-like-your-own-product',
   },
   {
     id: 'quote-future',
