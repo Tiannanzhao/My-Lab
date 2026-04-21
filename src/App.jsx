@@ -82,6 +82,10 @@ function getCardFrame(card, viewportWidth) {
       if (isSmallMobile) return { width: 320, height: 132 }
       if (isMobile) return { width: 380, height: 142 }
       return { width: 450, height: 152 }
+    case 'linkedin':
+      if (isSmallMobile) return { width: 300, height: 238 }
+      if (isMobile) return { width: 360, height: 286 }
+      return { width: 504, height: 399 }
     case 'text':
       if (isSmallMobile) return { width: 280, height: 270 }
       if (isMobile) return { width: 350, height: 280 }
@@ -647,6 +651,30 @@ function CanvasCard({ card, frame, index, onFolderOpen, onVideoOpen, onHoverType
             frameBorder="0"
             loading="lazy"
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          />
+        </div>
+      </div>
+    )
+  }
+
+  if (card.type === 'linkedin') {
+    return (
+      <div
+        className="card-shell"
+        style={wrapperStyle}
+        onMouseEnter={() => onHoverType(card.type)}
+        onMouseLeave={() => onHoverType(null)}
+        data-interactive="true"
+      >
+        <div className="card-title">{card.label}</div>
+        <div className="card-frame card-frame--spotify" style={{ height: frame.height }}>
+          <iframe
+            title={card.label}
+            src={card.src}
+            width="100%"
+            height={frame.height}
+            frameBorder="0"
+            allowFullScreen
           />
         </div>
       </div>

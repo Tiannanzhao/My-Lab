@@ -86,11 +86,6 @@ export const articlesData = {
         url: 'https://www.youtube.com/watch?v=I8hMPj3AD34',
       },
       {
-        title: 'How to design standout products in an AI world',
-        author: 'Molly Mahar',
-        url: 'https://www.youtube.com/watch?v=rc1WGS8QNeI',
-      },
-      {
         title: 'Working at Intercom with Tatiana Sivo | Product Designer',
         author: 'Tatiana Sivo',
         url: 'https://www.youtube.com/watch?v=L4qvhTuoO4A&list=PLlCIldMZCaFq2FOT-aQC8H7YL4xHSaQbB&index=8',
@@ -139,14 +134,6 @@ export const cards = [
     label: 'Transitioning into the next era of design',
   },
   {
-    id: 'yt-ai-world',
-    type: 'youtube',
-    top: '75%',
-    left: '76%',
-    embedId: 'rc1WGS8QNeI',
-    label: 'How to design standout products in an AI world',
-  },
-  {
     id: 'spotify-my-podcast',
     type: 'spotify',
     top: '44%',
@@ -182,16 +169,6 @@ export const cards = [
       "Before ChatGPT rolled onto the scene a year ago, artificial intelligence (AI) and machine learning (ML) were the mysterious tools of experts and data scientists - teams with a lot of niche experience and specialized domain knowledge. Now, things are different.\n\nYou're probably reading this because your company has decided to use OpenAI's GPT or another LLM (large language model) to build generative AI features into your product.",
     link: 'https://www.intercom.com/blog/design-ux-machine-learning-ai/',
     label: 'A new age of UX:\nEvolving your design approach for AI products',
-  },
-  {
-    id: 'text-ai-revolution',
-    type: 'text',
-    top: '58%',
-    left: '15%',
-    paragraph:
-      "AI is no longer a distant promise - it's here, and it's changing everything. From customer support to product design, the AI revolution is reshaping how we work, interact, and innovate. Are you ready to pioneer the future?",
-    link: 'https://www.intercom.com/blog/videos/pioneer-this-is-getting-real-ai-revolution/',
-    label: 'This is getting real: Welcome to the AI revolution',
   },
   {
     id: 'folder-posts',
