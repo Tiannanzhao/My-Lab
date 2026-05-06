@@ -150,26 +150,7 @@ export const cards = [
     text: 'Welcome to my lab',
     lines: ['Welcome to my lab'],
   },
-  {
-    id: 'text-flawless',
-    type: 'text',
-    top: '45%',
-    left: '16%',
-    paragraph:
-      "When people evaluate AI, they don't compare it to how humans actually perform - they compare it to perfection. That's a standard humans rarely meet. We forgive human error, but even a single AI misstep can erode trust completely. This double standard means AI has to earn trust in ways humans don't.",
-    link: 'https://fin.ai/ideas/why-do-we-expect-our-ai-products-to-be-flawless/',
-    label: 'Why do we expect our AI products to be flawless?',
-  },
-  {
-    id: 'text-ux-ai',
-    type: 'text',
-    top: '68%',
-    left: '10%',
-    paragraph:
-      "Before ChatGPT rolled onto the scene a year ago, artificial intelligence (AI) and machine learning (ML) were the mysterious tools of experts and data scientists - teams with a lot of niche experience and specialized domain knowledge. Now, things are different.\n\nYou're probably reading this because your company has decided to use OpenAI's GPT or another LLM (large language model) to build generative AI features into your product.",
-    link: 'https://www.intercom.com/blog/design-ux-machine-learning-ai/',
-    label: 'A new age of UX:\nEvolving your design approach for AI products',
-  },
+
   {
     id: 'folder-posts',
     type: 'folder',
@@ -199,26 +180,7 @@ export const cards = [
     highlightColor: 'accent-gold',
     link: 'https://github.com/Tiannanzhao/design-feel-like-your-own-product',
   },
-  {
-    id: 'quote-future',
-    type: 'blockquote',
-    top: '62%',
-    left: '75%',
-    text: "You can feel the shape of what's coming - even if the tools are still clunky, the future is clearly starting to boot up.",
-    highlight: 'the future is clearly starting to boot up',
-    highlightColor: 'accent-green',
-    link: 'https://thoughtwax.com/2025/03/terminal-velocity/',
-  },
-  {
-    id: 'quote-self-driving',
-    type: 'blockquote',
-    top: '30%',
-    left: '60%',
-    text: "I was going to title this 'Why can't we let self-driving cars kill anyone?' but I thought that might be a bit too much.",
-    highlight: "Why can't we let self-driving cars kill anyone?",
-    highlightColor: 'accent-orchid',
-    link: 'https://fin.ai/ideas/why-do-we-expect-our-ai-products-to-be-flawless/',
-  },
+
   {
     id: 'rotary-radio',
     type: 'radio',
