@@ -150,16 +150,6 @@ export const cards = [
     text: 'Welcome to my lab',
     lines: ['Welcome to my lab'],
   },
-
-  {
-    id: 'folder-posts',
-    type: 'folder',
-    top: '40%',
-    left: '32%',
-    title: 'POSTS',
-    label: 'POSTS',
-    folderId: 'posts',
-  },
   {
     id: 'folder-archive',
     type: 'folder',
